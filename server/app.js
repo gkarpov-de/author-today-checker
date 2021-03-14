@@ -5,7 +5,6 @@ const express = require('express')
 const config = require('dotenv').config()
 const PORT = process.env.PORT || 3000
 const lastCheckedBooks = require('./resources/last-checked-books.json')
-console.log(__dirname)
 
 const app = express()
 const server = http.createServer(app)

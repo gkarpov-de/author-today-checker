@@ -18,22 +18,23 @@ const request_header = {
 
 async function getLastChapterOfBook(bookId) {
   const bookContentUrl = getBookContentUrl(bookId)
-  const response = await needle('get', bookContentUrl, {
-    headers: { ...request_header },
-    redirect: 'follow'
-  })
+  const response = getInfoByUrl(bookContentUrl)
 
   return response.body.pop()
 }
 
 async function getBookInfo(bookId) {
   const bookMetaInfoUrl = getBookMetaInfoUrl(bookId)
-  const response = await needle('get', bookMetaInfoUrl, {
+  const response = getInfoByUrl(bookMetaInfoUrl)
+
+  return response.body
+}
+
+async function getInfoByUrl(url) {
+  return await needle('get', bookMetaInfoUrl, {
     headers: { ...request_header },
     redirect: 'follow'
   })
-
-  return response.body
 }
 
 function getLastCheckedBooks() {
